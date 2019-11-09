@@ -1,0 +1,18 @@
+<h2>Post Terbaru</h2>
+<div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-3@s uk-text-center" uk-grid>
+  {% set entries = craft.entries.section('post').type('post').all() %}
+  {% for item in entries %}
+    <div>
+      <div class="uk-card uk-card-default">
+        <div class="uk-card-media-top">
+          <a href="{{item.url}}"><img src="{{siteUrl}}{{item.imageCover.one().url}}" alt="Image Cover"></a>
+        </div>
+        <div class="uk-card-body">
+          <h3 class="uk-card-title">{{item.title}}</h3>
+          <p>Dipost tanggal {{item.postDate|date("d F, Y")}}</p>
+          <span class="uk-label">{{item.postKategori.one()}}</span>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

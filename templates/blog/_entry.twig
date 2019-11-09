@@ -1,0 +1,62 @@
+{% extends "_layouts/base.twig" %}
+
+{% block content %}
+  {# navbar #}
+  <nav class="uk-navbar-container" style="background-color: black; position: sticky; top: 0; z-index: 99" uk-navbar>
+    <div class="uk-navbar-left">
+      <ul class="uk-navbar-nav">
+        <li class="uk-active">
+          <a href="http://blog-craft.test/homepage" style="color: white">R-Anima</a>
+        </li>
+      </ul>
+    </div>
+    <div class="uk-navbar-right">
+      <ul class="uk-navbar-nav">
+        <li><a href="#" class="main-nav">Active</a></li>
+        <li>
+          <a href="#" class="main-nav">Parent</a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li><a href="#">Active</a></li>
+              <li><a href="#">Item</a></li>
+              <li class="uk-nav-header">Header</li>
+              <li><a href="#">Item</a></li>
+              <li><a href="#">Item</a></li>
+              <li class="uk-nav-divider"></li>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="http://blog-craft.test/about" class="main-nav">About Me</a></li>
+      </ul>
+    </div>
+  </nav>
+  {# end navbar #}
+
+  {# content #}
+  <div class="uk-width uk-margin-top" uk-grid>
+    <div class="uk-width-3-4@m uk-container">
+      {% if entry.type == 'homepage' %}
+        {% include "blog/_entry_homepage.twig" %}
+      {% elseif entry.type == 'post' %}
+        {% include "blog/_entry_post.twig" %}
+      {% elseif entry.type == 'about' %}
+        {% include "blog/_entry_about.twig" %}
+      {% endif %}
+    </div>
+    <div class="uk-width-1-4@m uk-width-1-1@s">
+      <ul class="uk-nav uk-nav-default">
+        <li class="uk-nav-header">Kategori</li>
+        <li><a href="#">Anime</a></li>
+        <li><a href="#">Manga</a></li>
+        <li class="uk-nav-divider"></li>
+        <li class="uk-nav-header">Post Terbaru</li>
+        {% set recent = craft.entries.section('post').type('post').all() %}
+        {% for item in recent %}
+          <li><a href="{{item.url}}">{{item.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {# end content #}
+{% endblock %}

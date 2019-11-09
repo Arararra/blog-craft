@@ -1,0 +1,20 @@
+.uk-navbar-nav li a{
+	color: black;
+}
+.uk-navbar-nav li .main-nav{
+	color: white;
+}
+.video-trailer{
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */ 
+}
+iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.trailer-title{
+  margin-top: -30px;
+}
