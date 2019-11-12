@@ -1,14 +1,10 @@
 {% extends "_layouts/base.twig" %}
 
 {% block content %}
-  {# content #}
+  {# if #}
   <div class="uk-width uk-margin-top" uk-grid>
     <div class="uk-width-3-4@m uk-container">
-      {% if entry.type == 'post' %}
-        {% include "blog/_entry_post.twig" %}
-      {% elseif entry.type == 'about' %}
-        {% include "blog/_entry_about.twig" %}
-      {% endif %}
+      {% include "blog/_entry_homepage.twig" %}
     </div>
     <div class="uk-width-1-4@m uk-width-1-1@s">
       <ul class="uk-nav uk-nav-default">
@@ -24,5 +20,5 @@
       </ul>
     </div>
   </div>
-  {# end content #}
+  {# end if #}
 {% endblock %}
