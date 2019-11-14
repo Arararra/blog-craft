@@ -8,10 +8,11 @@
   <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/css/custom.css">
 </head>
 <body>
-  {% include "blog/_navbar.twig" %}
+  {% include "_layouts/navbar.twig" %}
   {% block content %}
     {# content #}
   {% endblock %}
+  {% include "_layouts/footer.twig" %}
 
   <script src="{{siteUrl}}assets/libs/uikit/js/uikit.min.js"></script>
   <script src="{{siteUrl}}assets/libs/uikit/js/uikit-icons.min.js"></script>

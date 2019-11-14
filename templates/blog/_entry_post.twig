@@ -14,9 +14,9 @@
           <li>Judul: {{item.judul}}</li>
           <li>Kategori: {{item.kategori}}</li>
           <li>Tipe: {{item.tipe}}</li>
-          <li>Jumlah Episode: {{item.jumlahEpisode}}</li>
+          <li>Jumlah Episode/Chapter: {{item.jumlahEpisode}}</li>
           <li>Genre: {{item.genre}}</li>
-          <li>Producer: {{item.producer}}</li>
+          <li>Producer/Author: {{item.producer}}</li>
           <li>Tanggal Rilis: {{item.tanggalRilis}}</li>
         {% endfor %}
       </ul>
@@ -29,7 +29,7 @@
   <div class="uk-align-center video-trailer">
     <iframe src="{{entry.videoTrailer}}" frameborder="0" allowfullscreen></iframe>
   </div>
-  <p class="uk-text-lead uk-text-center trailer-title">Trailer {{entry.title}}</p>
+  <p class="uk-text-lead uk-text-center trailer-title">{{entry.title}} PV</p>
 </div>
 
 <div class="uk-heading-divider uk-margin-small">

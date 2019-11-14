@@ -1,0 +1,48 @@
+{# navbar #}
+<nav class="uk-navbar-container" style="background-color: black; position: sticky; top: 0; z-index: 99" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li class="uk-active">
+        <a href="{{siteUrl}}" style="color: white">R-Anima</a>
+      </li>
+    </ul>
+  </div>
+  <div class="uk-navbar-right">
+    <ul class="uk-navbar-nav uk-hidden@s">
+      <li><a href="#" class="main-nav uk-navbar-toggle" uk-toggle="target: #offcanvas-overlay" uk-navbar-toggle-icon></a></li>
+    </ul>
+    <ul class="uk-navbar-nav uk-visible@s">
+      <li><a href="{{siteUrl}}about" class="main-nav">Tentang</a></li>
+      <li>
+        <a href="{{siteUrl}}kategori" class="main-nav">Kategori</a>
+        <div class="uk-navbar-dropdown">
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            {% set cat = craft.categories.all() %}
+            {% for item in cat %}
+              <li class="uk-nav-header"><a href="{{item.url}}">{{item.title}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+{# end navbar #}
+
+<div id="offcanvas-overlay" uk-offcanvas="overlay: true; mode: slide; flip: true">
+  <div class="uk-offcanvas-bar">
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <h3>Menu Navigasi</h3>
+    <ul class="uk-nav uk-nav-defaults">
+      <li><a href="{{siteUrl}}about">Tentang</a></li>
+      <li>
+        <a href="{{siteUrl}}kategori">Kategori</a>
+        <ul class="uk-nav-sub" style="padding-left: 5%">
+          {% for item in cat %}
+            <li><a href="{{item.url}}">{{item.title}}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

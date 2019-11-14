@@ -18,3 +18,11 @@ iframe{
 .trailer-title{
   margin-top: -30px;
 }
+.footer{
+  margin-top: 5%;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+  background-color: black;
+}

@@ -9,11 +9,12 @@
     <div class="uk-width-1-4@m uk-width-1-1@s">
       <ul class="uk-nav uk-nav-default">
         <li class="uk-nav-header">Kategori</li>
-        <li><a href="#">Anime</a></li>
-        <li><a href="#">Manga</a></li>
+        {% for item in craft.categories.all() %}
+          <li><a href="{{item.url}}">{{item.title}}</a></li>
+        {% endfor %}
         <li class="uk-nav-divider"></li>
         <li class="uk-nav-header">Post Terbaru</li>
-        {% set recent = craft.entries.section('post').type('post').all() %}
+        {% set recent = craft.entries.section('post').type('post').limit(5).all() %}
         {% for item in recent %}
           <li><a href="{{item.url}}">{{item.title}}</a></li>
         {% endfor %}
