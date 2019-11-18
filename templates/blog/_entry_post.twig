@@ -33,9 +33,11 @@
 </div>
 
 <div class="uk-heading-divider uk-margin-small">
-  <h2>Post Terbaru</h2>
+  <h2>Post Terkait</h2>
   <div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-3@s uk-text-center" uk-grid>
-    {% set entries = craft.entries.section('post').type('post').all() %}
+    {% set cur = entry.detailList.kategori %}
+    {% set cat = craft.categories.slug(cur) %}
+    {% set entries = craft.entries.section('post').type('post').relatedTo(cat).limit(3).all() %}
     {% for item in entries %}
       <div>
         <div class="uk-card uk-card-default">
