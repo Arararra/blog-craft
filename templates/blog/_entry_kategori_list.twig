@@ -6,11 +6,12 @@
     <div class="uk-width-3-4@m uk-container">
 
       <h2>Menampilkan Kategori: {{category.title}}</h2>
-      <div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-3@s uk-text-center" uk-grid>
+      <div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-3@s uk-text-center" uk-grid uk-height-match="target: .uk-card">
         {# category.slug == slug dari kategori yang diinginkan #}
         {% set cat = craft.categories.slug(category.slug) %}
-        {% set entries = craft.entries.section('post').type('post').relatedTo(cat).all() %}
-        {% for item in entries %}
+        {% set entries = craft.entries.section('post').type('post').relatedTo(cat).limit(3) %}
+        {% paginate entries as pageInfo, pageEntries %}
+        {% for item in pageEntries %}
           <div>
             <div class="uk-card uk-card-default">
               <div class="uk-card-media-top">
@@ -28,6 +29,21 @@
       {% if entries is empty %}
         <p class="uk-heading-large uk-text-center">Kategori belum memiliki post.</p>
       {% endif %}
+      <div class="uk-text-center uk-margin-medium-top" style="font-size: 20px">
+        {% if pageInfo.prevUrl %}<a href="{{ pageInfo.prevUrl }}" class="uk-button uk-button-default">&#171;Sebelumnya</a>{% endif %}
+        {# {% if pageInfo.prevUrl %}<a href="{{ pageInfo.firstUrl }}">1</a>{% endif %} #}
+          {% for page, url in pageInfo.getPrevUrls(2) %}
+            <a href="{{url}}" class="uk-button uk-button-default">{{page}}</a>
+          {% endfor %}
+
+          {% if pageInfo.totalPages >= 2 %}<span class="uk-button uk-button-primary">{{ pageInfo.currentPage }}</span>{% endif %}
+
+          {% for page, url in pageInfo.getNextUrls(2) %}
+            <a href="{{ url }}" class="uk-button uk-button-default">{{ page }}</a>
+          {% endfor %}
+        {# {% if pageInfo.nextUrl %}<a href="{{ pageInfo.lastUrl }}">{{pageInfo.totalPages}}</a>{% endif %} #}
+        {% if pageInfo.nextUrl %}<a href="{{ pageInfo.nextUrl }}" class="uk-button uk-button-default">Selanjutnya&#187;</a>{% endif %}
+      </div>
 
     </div>
     <div class="uk-width-1-4@m uk-width-1-1@s">
