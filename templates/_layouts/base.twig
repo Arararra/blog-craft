@@ -9,9 +9,29 @@
 </head>
 <body>
   {% include "_layouts/navbar.twig" %}
-  {% block content %}
-    {# content #}
-  {% endblock %}
+  <div class="uk-width uk-margin-top" uk-grid>
+    <div class="uk-width-3-4@m uk-container">
+      {% block content %}
+        {# content #}
+      {% endblock %}
+    </div>
+    <div class="uk-width-1-4@m uk-width-1-1@s">
+      <ul class="uk-nav uk-nav-default">
+        <li class="uk-nav-header">Kategori</li>
+        {% for item in craft.categories.all() %}
+          <li><a href="{{item.url}}">{{item.title}}</a></li>
+        {% endfor %}
+        <li class="uk-nav-divider"></li>
+        <li class="uk-nav-header">Post Terbaru</li>
+        {% set recent = craft.entries.section('post').type('post').limit(5).all() %}
+        {% for item in recent %}
+          <li>
+            <a href="{{item.url}}"><b>{{item.title}}</b> ({{item.postDate|date("d F Y")}})</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
   {% include "_layouts/footer.twig" %}
 
   <script src="{{siteUrl}}assets/libs/uikit/js/uikit.min.js"></script>

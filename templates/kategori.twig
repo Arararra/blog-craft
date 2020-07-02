@@ -1,0 +1,20 @@
+{% extends "_layouts/base.twig" %}
+
+{% block content %}
+  <h2 class="uk-text-center">Silahkan pilih Kategori.</h2>
+  <div class="uk-text-center uk-flex-center uk-grid-column-small uk-child-width-1-2@s uk-margin-bottom" uk-grid>
+    {% set kategori = craft.categories.all() %}
+    {% for item in kategori %}
+      <div>
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-media-top">
+            <a href="{{item.url}}"><img src="{{siteUrl}}{{item.imageCover.one().url}}" alt="Image Cover"></a>
+          </div>
+          <div class="uk-card-body">
+            <h3 class="uk-card-title">{{item.title}}</h3>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
