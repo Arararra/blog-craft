@@ -1,10 +1,22 @@
 {
   "require": {
     "craftcms/cms": "3.4.26",
-    "craftcms/redactor": "2.4.0",
-    "verbb/super-table": "2.3.3",
+    "craftcms/redactor": "2.6.1",
+    "rama/my-plugin": "^1.0",
+    "rama/simple-plugin": "^1.0",
+    "verbb/super-table": "2.5.1",
     "vlucas/phpdotenv": "^3.4.0"
   },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "plugins/simpleplugin"
+    },
+    {
+      "type": "path",
+      "url": "plugins/myplugin"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "modules\\": "modules/"
