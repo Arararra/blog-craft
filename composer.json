@@ -2,7 +2,7 @@
   "require": {
     "craftcms/cms": "3.4.26",
     "craftcms/redactor": "2.6.1",
-    "rama/my-plugin": "^1.0",
+    "putyourlightson/craft-cp-style-guide": "1.0.2",
     "rama/simple-plugin": "^1.0",
     "verbb/super-table": "2.5.1",
     "vlucas/phpdotenv": "^3.4.0"

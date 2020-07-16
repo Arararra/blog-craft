@@ -1,0 +1,24 @@
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{# {% do view.registerAssetBundle("rama\\simpleplugin\\assetbundles\\simpleplugin\\SimplePluginAsset") %} #}
+{# {% do view.registerAssetBundle("rama\\simpleplugin\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %} #}
+
+{# The title of this CP section #}
+{% set title = "Simple Plugin" %}
+{% set pluginCpUrl = url('simple-plugin') %}
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@rama/simpleplugin/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
+
+{% block head %}
+  {{ parent() }}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.3/dist/alpine.js" defer></script>
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block foot %}
+  {{ parent() }}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+{% endblock %}

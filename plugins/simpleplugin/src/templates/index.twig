@@ -1,31 +1,47 @@
-{% extends "_layouts/cp" %}
-{% import "_includes/forms" as forms %}
+{% extends "simple-plugin/_layouts/base.twig" %}
 
-{# {% do view.registerAssetBundle("rama\\simpleplugin\\assetbundles\\simpleplugin\\SimplePluginAsset") %} #}
-{% do view.registerAssetBundle("rama\\simpleplugin\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
-
-{# Link for the ? icon at the bottom of the page #}
-{% set docsUrl = "???" %}
-
-{# The title of this CP section #}
-{% set title = "Simple Plugin" %}
-
-{# The URL to this plugin's base CP section #}
-{% set pluginCpUrl = url('simple-plugin') %}
-
-{# Get a URL to an image in our AssetBundle #}
-{% set iconUrl = view.getAssetManager().getPublishedUrl('@rama/simpleplugin/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
-
-{# Content that should appear in the page header#}
-{% set extraPageHeaderHtml %}
-  <div class="buttons">
-    <a href="{{ pluginCpUrl }}" class="btn submit add icon">{{ "Click Me!"|t('simple-plugin') }}</a>
+{% block content %}
+  <div class="d-flex align-items-end">
+    {# <img src="{{ iconUrl }}" height="64" width="64"> #}
+    <i class="fas fa-search h1 mr-1"></i>
+    <h2>Testing multiple search</h2>
   </div>
-{% endset %}
 
-{# The content of the CP Section#}
-{% set content %}
-  <h2>{{ "Index CP Section body goes here"|t('simple-plugin') }}</h2>
-  <img src="{{ iconUrl }}" height="64" width="64" />
-  <p class="textline"></p>
-{% endset %}
+  <div id="userList">
+    <div class="input ltr my-4">
+      <label>Search for something</label>
+      <textarea class="search text fullwidth" rows="1" name="search"></textarea>
+    </div>
+
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Total Purchase</th>
+        <th>Birthday</th>
+      </thead>
+      <tbody class="list">
+        {% for item in craft.simplePlugin.getCustomers() %}
+          <tr>
+            <td class="name">{{ item.name }}</td>
+            <td class="email">{{ item.email }}</td>
+            <td class="totalPurchase">{{ item.totalPurchase }}</td>
+            <td class="birthday">{{ item.birthday|dateFilter }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+{% js %}
+  var options = {
+    valueNames: ['name', 'email', 'totalPurchase', 'birthday'],
+  };
+  var searchTable = new List('userList', options);
+
+  document.querySelector('textarea').addEventListener('input', function () {
+    var value = this.value;
+    console.log(value.split('\n'))
+  });
+{% endjs %}

@@ -48,4 +48,28 @@ class SimplePluginService extends Component
         $result = 'something';
         return $result;
     }
+
+    public function getCustomers() {
+        $array = [
+            [
+                'name' => 'rama',
+                'email' => 'rama@gmail.com',
+                'totalPurchase' => 11,
+                'birthday' => '2002-10-09',
+            ],
+            [
+                'name' => 'fakhri',
+                'email' => 'fakhri@gmail.com',
+                'totalPurchase' => 9,
+                'birthday' => '2000-04-25',
+            ],
+            [
+                'name' => 'renaldy',
+                'email' => 'renaldy@gmail.com',
+                'totalPurchase' => 15,
+                'birthday' => '2003-05-10',
+            ],
+        ];
+        return $array;
+    }
 }

@@ -55,6 +55,7 @@ class SimplePluginTwigExtension extends AbstractExtension
     {
         return [
             new TwigFilter('someFilter', [$this, 'someInternalFunction']),
+            new TwigFilter('dateFilter', [$this, 'dateFilter']),
         ];
     }
 
@@ -83,6 +84,13 @@ class SimplePluginTwigExtension extends AbstractExtension
     {
         $result = $text . " in the way";
 
+        return $result;
+    }
+
+    public function dateFilter($date) {
+        $array = explode('-', $date);
+        $array[1] = date("F", mktime(0, 0, 0, $array[1], 10));
+        $result = $array[2].' '.$array[1].' '.$array[0];
         return $result;
     }
 }

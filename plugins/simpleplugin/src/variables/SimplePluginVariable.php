@@ -53,4 +53,8 @@ class SimplePluginVariable
         }
         return $result;
     }
+
+    public function getCustomers() {
+        return SimplePLugin::$plugin->simplePluginService->getCustomers();
+    }
 }
