@@ -7,41 +7,27 @@
     <h2>Testing multiple search</h2>
   </div>
 
-  <div id="userList">
-    <div class="input ltr my-4">
+  <div class="input ltr my-4">
+    <form method="GET">
       <label>Search for something</label>
-      <textarea class="search text fullwidth" rows="1" name="search"></textarea>
-    </div>
-
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Total Purchase</th>
-        <th>Birthday</th>
-      </thead>
-      <tbody class="list">
-        {% for item in craft.simplePlugin.getCustomers() %}
-          <tr>
-            <td class="name">{{ item.name }}</td>
-            <td class="email">{{ item.email }}</td>
-            <td class="totalPurchase">{{ item.totalPurchase }}</td>
-            <td class="birthday">{{ item.birthday|dateFilter }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      <textarea class="text fullwidth" rows="1" name="search"></textarea>
+      <input type="submit" value="Search">
+    </form>
   </div>
+
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Total Purchase</th>
+      <th>Birthday</th>
+    </thead>
+    <tbody>
+      {% for item in craft.simplePlugin.searchArea() %}
+        <tr>
+          <td>{{ item.name }}</td><td>{{ item.email }}</td><td>{{ item.totalPurchase }}</td><td>{{ item.birthday|dateFilter }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
-
-{% js %}
-  var options = {
-    valueNames: ['name', 'email', 'totalPurchase', 'birthday'],
-  };
-  var searchTable = new List('userList', options);
-
-  document.querySelector('textarea').addEventListener('input', function () {
-    var value = this.value;
-    console.log(value.split('\n'))
-  });
-{% endjs %}

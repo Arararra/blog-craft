@@ -1,6 +1,6 @@
 {
   "require": {
-    "craftcms/cms": "3.4.26",
+    "craftcms/cms": "3.4.27",
     "craftcms/redactor": "2.6.1",
     "putyourlightson/craft-cp-style-guide": "1.0.2",
     "rama/simple-plugin": "^1.0",

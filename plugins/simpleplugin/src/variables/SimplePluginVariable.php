@@ -57,4 +57,7 @@ class SimplePluginVariable
     public function getCustomers() {
         return SimplePLugin::$plugin->simplePluginService->getCustomers();
     }
+    public function searchArea() {
+        return SimplePLugin::$plugin->simplePluginService->searchArea();
+    }
 }
