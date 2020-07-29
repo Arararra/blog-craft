@@ -27,6 +27,7 @@ return [
         // (see https://docs.craftcms.com/v3/project-config.html)
         'useProjectConfigFile' => false,
         'pageTrigger' => 'halaman=',
+        'enableCsrfProtection' => true,
     ],
 
     // Dev environment settings

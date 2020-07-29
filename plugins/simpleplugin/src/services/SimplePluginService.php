@@ -72,17 +72,6 @@ class SimplePluginService extends Component
     return $array;
   }
 
-  public function strposa($haystack, $needles=[], $offset=0) {
-    $chr = [];
-    foreach($needles as $needle) {
-      $res = strpos($haystack, $needle, $offset);
-      if ($res !== false) $chr[$needle] = $res;
-    }
-    if(empty($chr)) return false;
-
-    return min($chr);
-  }
-
   public function arsearch($hay, $needs) {
     foreach($needs as $val) {
       if (strpos($hay, trim($val)) !== false) { return true; }
@@ -104,7 +93,7 @@ class SimplePluginService extends Component
         'birthday' => '2000-04-25',
       ],
       [
-        'name' => 'fakhri',
+        'name' => 'fakhri2',
         'email' => 'fakhri2@gmail.com',
         'totalPurchase' => 9,
         'birthday' => '2000-04-25',
@@ -117,11 +106,33 @@ class SimplePluginService extends Component
       ],
     ];
     $finalArray = [];
+    $formSearch = Craft::$app->request->getBodyParam('search');
+    $getCsv = Craft::$app->request->getBodyParam('csvSearch');
+    if (isset($getCsv)) {
+      $getCsv = 'assets/files/'.$getCsv;
+      $csvFile = fopen($getCsv, "r");
+      while (!feof($csvFile)){ $csvData[] = fgetcsv($csvFile); }
+      fclose($csvFile);
+    } else {
+      $csvData = [];
+    }
+    foreach ($csvData as $key => $value) {
+      if ($key+1 == count($csvData)) { break; }
+      $csvSearch[] = $value[0];
+    }
 
-    if (isset($_GET['search'])) {
-      $search = explode("\n", $_GET["search"]);
+
+    if ($formSearch != '') {
+      $search = explode("\n", $formSearch);
       foreach ($dataArray as $key => $value) {
-        if ($this->arsearch($value['name'], $search)) {
+        if ($this->arsearch($value['name'], $search) OR $this->arsearch($value['email'], $search)) {
+          $finalArray[] = $value;
+        }
+      }
+    } elseif ($csvData != []) {
+      $search = $csvSearch;
+      foreach ($dataArray as $key => $value) {
+        if ($this->arsearch($value['name'], $search) OR $this->arsearch($value['email'], $search)) {
           $finalArray[] = $value;
         }
       }
